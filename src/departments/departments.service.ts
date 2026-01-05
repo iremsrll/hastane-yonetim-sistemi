@@ -12,8 +12,8 @@ export class DepartmentsService {
   ) {}
 
   async create(dto: CreateDepartmentDto) {
-    const dept = this.deptRepo.create(dto); 
-    return await this.deptRepo.save(dept);
+    const newDept = this.deptRepo.create(dto); 
+    return await this.deptRepo.save(newDept);
   }
 
   async findAll() {
