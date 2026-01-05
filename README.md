@@ -39,7 +39,8 @@ npm install
 
 `.env` dosyası oluşturun ve veritabanı bilgilerinizi girin:
 ```env
-DB_HOST=localhost
+DB_TYPE=mssql
+DB_HOST=localhost\SQLEXPRESS
 DB_USER=sa
 DB_PASS=Sifreniz
 DB_NAME=HastaneYonetimDB
