@@ -34,4 +34,14 @@ export class AppointmentsService {
     if (!appo) throw new NotFoundException(`Randevu kaydı (#${id}) bulunamadı.`);
     return appo;
   }
+
+  async update(id: number, dto: any) {
+    const appo = await this.findOne(id);
+    return await this.appoRepo.save({ ...appo, ...dto });
+  }
+
+  async remove(id: number) {
+    const appo = await this.findOne(id);
+    return await this.appoRepo.remove(appo);
+  }
 }

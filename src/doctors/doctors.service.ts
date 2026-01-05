@@ -12,11 +12,12 @@ export class DoctorsService {
   ) {}
 
   async create(dto: CreateDoctorDto) {
-    const newDoctor = this.doctorRepo.create({
-      doctorFullName: dto.doctorFullName,
-      specialization: dto.specialization,
-      department: { deptId: dto.departmentId }
-    });
+    const newDoctor = new Doctor();
+    newDoctor.doctorFullName = dto.doctorFullName;
+    newDoctor.specialization = dto.specialization;
+    
+    (newDoctor as any).department = { deptId: dto.departmentId };
+
     return await this.doctorRepo.save(newDoctor);
   }
 
@@ -33,5 +34,15 @@ export class DoctorsService {
       throw new NotFoundException(`Belirtilen ID (#${id}) ile eşleşen bir hekim bulunamadı.`);
     }
     return doctor;
+  }
+
+  async update(id: number, dto: any) {
+    const doctor = await this.findOne(id);
+    return await this.doctorRepo.save({ ...doctor, ...dto });
+  }
+
+  async remove(id: number) {
+    const doctor = await this.findOne(id);
+    return await this.doctorRepo.remove(doctor);
   }
 }

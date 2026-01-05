@@ -27,4 +27,14 @@ export class PatientsService {
     }
     return patient;
   }
+  
+  async update(id: number, dto: any) {
+    const patient = await this.findOne(id);
+    return await this.patientRepo.save({ ...patient, ...dto });
+  }
+
+  async remove(id: number) {
+    const patient = await this.findOne(id);
+    return await this.patientRepo.remove(patient);
+  }
 }

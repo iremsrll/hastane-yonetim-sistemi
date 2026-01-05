@@ -1,26 +1,38 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Department } from './entities/department.entity';
 import { CreateDepartmentDto } from './dto/create-department.dto';
-import { UpdateDepartmentDto } from './dto/update-department.dto';
 
 @Injectable()
 export class DepartmentsService {
-  create(createDepartmentDto: CreateDepartmentDto) {
-    return 'This action adds a new department';
+  constructor(
+    @InjectRepository(Department)
+    private readonly deptRepo: Repository<Department>,
+  ) {}
+
+  async create(dto: CreateDepartmentDto) {
+    const dept = this.deptRepo.create(dto); 
+    return await this.deptRepo.save(dept);
   }
 
-  findAll() {
-    return `This action returns all departments`;
+  async findAll() {
+    return await this.deptRepo.find({ relations: ['doctors'] });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} department`;
+  async findOne(id: number) {
+    const dept = await this.deptRepo.findOne({ where: { deptId: id }, relations: ['doctors'] });
+    if (!dept) throw new NotFoundException(`Bölüm kaydı (#${id}) bulunamadı.`);
+    return dept;
   }
 
-  update(id: number, updateDepartmentDto: UpdateDepartmentDto) {
-    return `This action updates a #${id} department`;
+  async update(id: number, dto: any) {
+    const dept = await this.findOne(id);
+    return await this.deptRepo.save({ ...dept, ...dto });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} department`;
+  async remove(id: number) {
+    const dept = await this.findOne(id);
+    return await this.deptRepo.remove(dept);
   }
 }
