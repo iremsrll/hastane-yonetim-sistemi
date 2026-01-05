@@ -12,7 +12,8 @@ export class DoctorsService {
   ) {}
 
   async create(dto: CreateDoctorDto) {
-    const newDoctor = new Doctor();
+    const newDoctor = this.doctorRepo.create({}); 
+    
     newDoctor.doctorFullName = dto.doctorFullName;
     newDoctor.specialization = dto.specialization;
     

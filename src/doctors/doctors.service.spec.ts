@@ -9,7 +9,7 @@ describe('DoctorsService (Birim Testi)', () => {
   let repository;
 
   const mockDoctorRepository = {
-    create: jest.fn(),
+    create: jest.fn().mockReturnValue({}),
     save: jest.fn(),
     find: jest.fn(),
     findOne: jest.fn(),
