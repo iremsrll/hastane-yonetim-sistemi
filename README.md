@@ -2,6 +2,9 @@
 
 Hastane Yönetim Sistemi, bir hastanenin temel operasyonlarını (Hasta, Doktor, Bölüm, Randevu ve Reçete yönetimi) yönetmek için tasarlanmış profesyonel bir RESTful API'dir.
 
+[![codecov](https://codecov.io/gh/iremsrll/hastane-yonetim-sistemi/graph/badge.svg?token=EAIYJYVPOH)](https://codecov.io/gh/iremsrll/hastane-yonetim-sistemi)
+
+![Build Status](https://github.com/iremsrll/hastane-yonetim-sistemi/actions/workflows/main.yml/badge.svg)
 
 ## Özellikler
 
