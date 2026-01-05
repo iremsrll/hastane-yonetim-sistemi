@@ -109,7 +109,7 @@ curl -X POST http://localhost:3000/patients \
   -H "Content-Type: application/json" \
   -d '{
     "patientsName": "Ahmet",
-    "identityNumber": "Yılmaz",
+    "identityNumber": "123456789",
   }'
 ```
 
