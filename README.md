@@ -108,7 +108,7 @@ Yeni bir hasta oluşturma:
 curl -X POST http://localhost:3000/patients \
   -H "Content-Type: application/json" \
   -d '{
-    "patientsName": "Ahmet",
+    "patientsName": "İrem Saral",
     "identityNumber": "123456789",
   }'
 ```
