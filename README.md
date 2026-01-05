@@ -1,98 +1,150 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Hastane Yönetim Sistemi API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Hastane Yönetim Sistemi, bir hastanenin temel operasyonlarını (Hasta, Doktor, Bölüm, Randevu ve Reçete yönetimi) yönetmek için tasarlanmış profesyonel bir RESTful API'dir.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Özellikler
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- 5 farklı ana kaynak yönetimi (Patients, Doctors, Departments, Appointments, Prescriptions)
+- İlişkisel veri modelleri ve tam CRUD desteği
+- %60+ kod kapsamı ile kapsamlı test altyapısı
+- Swagger/OpenAPI dokümantasyonu
+- CI/CD pipeline entegrasyonu
+- TypeORM ile veritabanı yönetimi
 
-## Project setup
+## Teknolojiler
 
+- **Framework:** NestJS
+- **ORM:** TypeORM
+- **Veritabanı:** MS SQL Server (Production), SQLite (Test)
+- **Dokümantasyon:** Swagger (OpenAPI)
+- **Test:** Jest & Supertest
+- **CI/CD:** GitHub Actions & Codecov
+
+## Kurulum
+
+Projeyi klonlayın:
 ```bash
-$ npm install
+git clone https://github.com/iremsrll/hastane-yonetim-sistemi.git
+cd hastane-yonetim-sistemi
 ```
 
-## Compile and run the project
-
+Bağımlılıkları yükleyin:
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+`.env` dosyası oluşturun ve veritabanı bilgilerinizi girin:
+```env
+DB_HOST=localhost
+DB_USER=sa
+DB_PASS=YourPassword
+DB_NAME=HastaneYonetimDB
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+Uygulamayı başlatın:
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+API dokümantasyonuna http://localhost:3000/api-docs adresinden erişebilirsiniz.
 
-## Resources
+## Kullanım
 
-Check out a few resources that may come in handy when working with NestJS:
+### API Endpoints
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+**Departments (Bölümler)**
+```bash
+GET    /departments      # Tüm bölümleri listele
+GET    /departments/:id  # Belirli bir bölümü getir
+POST   /departments      # Yeni bölüm oluştur
+PUT    /departments/:id  # Bölüm güncelle
+DELETE /departments/:id  # Bölüm sil
+```
 
-## Support
+**Doctors (Doktorlar)**
+```bash
+GET    /doctors      # Tüm doktorları listele
+GET    /doctors/:id  # Belirli bir doktoru getir
+POST   /doctors      # Yeni doktor oluştur
+PUT    /doctors/:id  # Doktor güncelle
+DELETE /doctors/:id  # Doktor sil
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+**Patients (Hastalar)**
+```bash
+GET    /patients      # Tüm hastaları listele
+GET    /patients/:id  # Belirli bir hastayı getir
+POST   /patients      # Yeni hasta kaydet
+PUT    /patients/:id  # Hasta güncelle
+DELETE /patients/:id  # Hasta sil
+```
 
-## Stay in touch
+**Appointments (Randevular)**
+```bash
+GET    /appointments      # Tüm randevuları listele
+GET    /appointments/:id  # Belirli bir randevuyu getir
+POST   /appointments      # Yeni randevu oluştur
+PUT    /appointments/:id  # Randevu güncelle
+DELETE /appointments/:id  # Randevu iptal et
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+**Prescriptions (Reçeteler)**
+```bash
+GET    /prescriptions      # Tüm reçeteleri listele
+GET    /prescriptions/:id  # Belirli bir reçeteyi getir
+POST   /prescriptions      # Yeni reçete oluştur
+PUT    /prescriptions/:id  # Reçete güncelle
+DELETE /prescriptions/:id  # Reçete sil
+```
 
-## License
+### Örnek İstek
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Yeni bir hasta oluşturma:
+```bash
+curl -X POST http://localhost:3000/patients \
+  -H "Content-Type: application/json" \
+  -d '{
+    "firstName": "Ahmet",
+    "lastName": "Yılmaz",
+    "dateOfBirth": "1990-01-15",
+    "phone": "5551234567",
+    "email": "ahmet@example.com"
+  }'
+```
+
+## Testler
+
+Tüm testleri çalıştırın:
+```bash
+npm run test
+```
+
+Kod kapsamı raporunu görüntüleyin:
+```bash
+npm run test:cov
+```
+
+E2E testlerini çalıştırın:
+```bash
+npm run test:e2e
+```
+
+## Veri Modeli
+
+Sistem şu ilişkisel yapıya sahiptir:
+
+- **Department → Doctor** (1-N): Bir bölümde birden fazla doktor çalışabilir
+- **Patient → Appointment** (1-N): Bir hastanın birden fazla randevusu olabilir
+- **Doctor → Appointment** (1-N): Bir doktorun birden fazla randevusu olabilir
+- **Appointment → Prescription** (1-1): Her randevunun bir reçetesi olabilir
+
+## Lisans
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## İletişim
+
+İrem Saral - [@iremsrll](https://github.com/iremsrll)
+
+Proje Linki: [https://github.com/iremsrll/hastane-yonetim-sistemi](https://github.com/iremsrll/hastane-yonetim-sistemi)
