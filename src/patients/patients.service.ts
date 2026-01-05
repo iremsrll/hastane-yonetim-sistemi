@@ -1,26 +1,30 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Patient } from './entities/patient.entity';
 import { CreatePatientDto } from './dto/create-patient.dto';
-import { UpdatePatientDto } from './dto/update-patient.dto';
 
 @Injectable()
 export class PatientsService {
-  create(createPatientDto: CreatePatientDto) {
-    return 'This action adds a new patient';
+  constructor(
+    @InjectRepository(Patient)
+    private readonly patientRepo: Repository<Patient>,
+  ) {}
+
+  async create(dto: CreatePatientDto) {
+    const newPatient = this.patientRepo.create(dto);
+    return await this.patientRepo.save(newPatient);
   }
 
-  findAll() {
-    return `This action returns all patients`;
+  async findAll() {
+    return await this.patientRepo.find({ relations: ['appointments'] });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} patient`;
-  }
-
-  update(id: number, updatePatientDto: UpdatePatientDto) {
-    return `This action updates a #${id} patient`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} patient`;
+  async findOne(id: number) {
+    const patient = await this.patientRepo.findOne({ where: { patientId: id } });
+    if (!patient) {
+      throw new NotFoundException(`Sistemde #${id} numaralı hasta kaydı bulunmuyor.`);
+    }
+    return patient;
   }
 }

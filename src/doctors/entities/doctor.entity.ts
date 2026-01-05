@@ -8,10 +8,10 @@ export class Doctor {
   doctorId: number;
 
   @Column()
-  doctorFullName: string;
+  doctorFullName: string; 
 
   @Column()
-  title: string;
+  specialization: string; 
 
   @ManyToOne(() => Department, (dept) => dept.doctors)
   department: Department;
