@@ -41,7 +41,7 @@ npm install
 ```env
 DB_HOST=localhost
 DB_USER=sa
-DB_PASS=YourPassword
+DB_PASS=Sifreniz
 DB_NAME=HastaneYonetimDB
 ```
 
@@ -108,11 +108,8 @@ Yeni bir hasta oluşturma:
 curl -X POST http://localhost:3000/patients \
   -H "Content-Type: application/json" \
   -d '{
-    "firstName": "Ahmet",
-    "lastName": "Yılmaz",
-    "dateOfBirth": "1990-01-15",
-    "phone": "5551234567",
-    "email": "ahmet@example.com"
+    "patientsName": "Ahmet",
+    "identityNumber": "Yılmaz",
   }'
 ```
 
